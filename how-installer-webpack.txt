@@ -1,0 +1,89 @@
+Instalar Webpack 
+
+- No terminal
+> npm init (-y para autocompletar)
+> npm install webpack --save-dev
+> npm install webpack-cli --save-dev
+
+- Troque o "scripts" do arquivo package.json por isso:
+[json]
+"scripts": {
+    "dev": "webpack --watch"
+  },
+[json]
+
+- Crie o arquivo "webpack.config.js"
+- Cole esse código nele 
+[code]
+const path = require('path');
+
+module.exports = {
+  entry: './src/js/main.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
+  },
+  mode : 'development'
+};
+[code]
+
+- No terminal
+
+> npm install --save-dev @babel/core @babel/cli @babel/preset-env @babel/polyfill babel-loader
+
+- Crie o arquivo ".babelrc" e coloque esse json nele: 
+[JSON]
+{
+  "presets": ["@babel/preset-env"]
+}
+[JSON]
+
+- Em seguida, adicione esse código ao "webpack.config.js", em 
+baixo do "mode":
+[code]
+module: {
+      rules: [
+        {
+          test: /\.m?js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: "babel-loader",
+            options: {
+              presets: ['@babel/preset-env']
+            }
+          }
+        }
+      ]
+    }
+[code]
+
+- Cole no projeto o que estiver na pasta "modeloPastas"
+
+- Rode o programa com "npm run dev" ou Live go no vscode
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
